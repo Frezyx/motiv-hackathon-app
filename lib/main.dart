@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:motiv_hackathon_app/models/user.dart';
 import 'package:motiv_hackathon_app/widgets/launch_navigator.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +8,8 @@ import 'blocs/user_repository_bloc.dart';
 import 'data/repositories/user/mock/repository.dart';
 import 'data/repositories/user/user_repository.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+
+import 'models/interfaces/user_interface.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +43,7 @@ class App extends StatelessWidget {
         ),
         ChangeNotifierProvider(
             create: (ctx) => UserRepositoryBloc(repository: _userRepository)),
-        Provider<User>(create: (ctx) => null)
+        Provider<UserInterface>(create: (ctx) => null)
       ],
       builder: (ctx, w) => MaterialApp(
         title: 'Flutter Demo',

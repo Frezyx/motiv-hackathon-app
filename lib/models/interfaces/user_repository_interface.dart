@@ -1,5 +1,5 @@
+import 'package:motiv_hackathon_app/models/interfaces/user_interface.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
-import '../user.dart';
 
 abstract class UserRepositoryInterface {
   Future<void> open() async {}
@@ -10,9 +10,9 @@ abstract class UserRepositoryInterface {
 
   Future<bool> clear() async {}
 
-  Future<bool> create(User user) async {}
+  Future<bool> create(UserInterface user) async {}
 
-  User getAuthorized() {}
+  UserInterface getAuthorized() {}
 
   AuthStatus getAuthorizedStatus() {}
 }

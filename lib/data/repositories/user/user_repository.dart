@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:motiv_hackathon_app/models/interfaces/user_interface.dart';
 import 'package:motiv_hackathon_app/models/interfaces/user_repository_interface.dart';
-import 'package:motiv_hackathon_app/models/user.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
 
 class UserRepository implements UserRepositoryInterface {
@@ -19,10 +19,10 @@ class UserRepository implements UserRepositoryInterface {
   Future<void> close() => _repository.close();
 
   @override
-  Future<bool> create(User user) => _repository.create(user);
+  Future<bool> create(UserInterface user) => _repository.create(user);
 
   @override
-  User getAuthorized() => _repository.getAuthorized();
+  UserInterface getAuthorized() => _repository.getAuthorized();
 
   @override
   AuthStatus getAuthorizedStatus() => _repository.getAuthorizedStatus();

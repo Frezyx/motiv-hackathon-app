@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:motiv_hackathon_app/models/user.dart';
+import 'package:motiv_hackathon_app/models/interfaces/user_interface.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
 
 import '../user_repository.dart';
@@ -26,12 +26,12 @@ class MockUserRepository extends UserRepository {
     return true;
   }
 
-  Future<bool> create(User user) async {
+  Future<bool> create(UserInterface user) async {
     await Hive.box<bool>(_repoKey).put(_fakeEmail, true);
     return true;
   }
 
-  User getAuthorized() {
+  UserInterface getAuthorized() {
     //todo: implement
     throw UnimplementedError();
   }

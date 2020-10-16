@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:motiv_hackathon_app/blocs/auth_screen_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/launch_navigator_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/user_repository_bloc.dart';
-import 'package:motiv_hackathon_app/screens/auth_screen/auth_screen.dart';
+import 'package:motiv_hackathon_app/screens/auth/auth_screen.dart';
+import 'package:motiv_hackathon_app/screens/home/home_screen.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
 import 'package:provider/provider.dart';
 
@@ -25,7 +26,7 @@ class LaunchNavigator extends StatelessWidget {
         );
         break;
       default:
-        return Scaffold();
+        return HomeScreen();
     }
   }
 

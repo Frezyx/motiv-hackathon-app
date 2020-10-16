@@ -2,25 +2,25 @@ import 'dart:convert';
 
 import 'interfaces/user_interface.dart';
 
-class User implements UserInterface {
+class HumanResourceUser implements UserInterface {
   final int id;
   final String login;
   final String name;
   final String passWord;
-  User({
+  HumanResourceUser({
     this.id,
     this.login,
     this.name,
     this.passWord,
   });
 
-  User copyWith({
+  HumanResourceUser copyWith({
     int id,
     String login,
     String name,
     String passWord,
   }) {
-    return User(
+    return HumanResourceUser(
       id: id ?? this.id,
       login: login ?? this.login,
       name: name ?? this.name,
@@ -37,10 +37,10 @@ class User implements UserInterface {
     };
   }
 
-  factory User.fromMap(Map<String, dynamic> map) {
+  factory HumanResourceUser.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
 
-    return User(
+    return HumanResourceUser(
       id: map['id'],
       login: map['login'],
       name: map['name'],
@@ -50,18 +50,19 @@ class User implements UserInterface {
 
   String toJson() => json.encode(toMap());
 
-  factory User.fromJson(String source) => User.fromMap(json.decode(source));
+  factory HumanResourceUser.fromJson(String source) =>
+      HumanResourceUser.fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'User(id: $id, login: $login, name: $name, passWord: $passWord)';
+    return 'HumanResourceUser(id: $id, login: $login, name: $name, passWord: $passWord)';
   }
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
 
-    return o is User &&
+    return o is HumanResourceUser &&
         o.id == id &&
         o.login == login &&
         o.name == name &&

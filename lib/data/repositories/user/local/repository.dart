@@ -1,4 +1,4 @@
-import 'package:motiv_hackathon_app/models/user.dart';
+import 'package:motiv_hackathon_app/models/interfaces/user_interface.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
 
 import '../user_repository.dart';
@@ -24,12 +24,12 @@ class LocalUserRepository extends UserRepository {
     throw UnimplementedError();
   }
 
-  Future<bool> create(User user) async {
+  Future<bool> create(UserInterface user) async {
     //todo: implement
     throw UnimplementedError();
   }
 
-  User getAuthorized() {
+  UserInterface getAuthorized() {
     //todo: implement
     throw UnimplementedError();
   }

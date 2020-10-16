@@ -40,7 +40,7 @@ class AuthScreen extends StatelessWidget {
                   width: isLogin ? 150 : 190,
                   child: RaisedButton(
                     onPressed: () {
-                      userRepositoryBloc.repository.create(User());
+                      userRepositoryBloc.repository.create(HumanResourceUser());
                       launchNavigatorBloc.selectedPage = LaunchPages.Home;
                     },
                     color: DesignTheme.mainColor,
