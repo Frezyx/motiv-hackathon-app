@@ -4,6 +4,7 @@ import 'package:motiv_hackathon_app/models/user.dart';
 import 'package:motiv_hackathon_app/widgets/launch_navigator.dart';
 import 'package:provider/provider.dart';
 
+import 'blocs/launch_navigator_bloc.dart';
 import 'blocs/user_repository_bloc.dart';
 import 'data/repositories/user/mock/repository.dart';
 import 'data/repositories/user/user_repository.dart';
@@ -13,7 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureHive();
   final userRepository = await _configureUserRepository();
-  runApp(MyApp(userRepository : userRepository));
+  runApp(MyApp(userRepository: userRepository));
 }
 
 Future _configureHive() async {
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => LaunchNavigatorBloc(),
+        ),
         ChangeNotifierProvider(
             create: (ctx) => UserRepositoryBloc(repository: _userRepository)),
         Provider<User>(create: (ctx) => null)
