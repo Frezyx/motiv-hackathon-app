@@ -37,11 +37,10 @@ class MockUserRepository extends UserRepository {
   }
 
   AuthStatus getAuthorizedStatus() {
-    return AuthStatus.Authorized;
-    // final box = Hive.box<bool>(_repoKey);
-    // final isEmailSet = box.get(_fakeEmail);
-    // return isEmailSet ?? false
-    //     ? AuthStatus.Authorized
-    //     : AuthStatus.Unauthorized;
+    final box = Hive.box<bool>(_repoKey);
+    final isEmailSet = box.get(_fakeEmail);
+    return isEmailSet ?? false
+        ? AuthStatus.Authorized
+        : AuthStatus.Unauthorized;
   }
 }

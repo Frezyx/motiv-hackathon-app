@@ -14,7 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureHive();
   final userRepository = await _configureUserRepository();
-  runApp(MyApp(userRepository: userRepository));
+  runApp(App(userRepository: userRepository));
 }
 
 Future _configureHive() async {
@@ -29,9 +29,8 @@ Future<UserRepository> _configureUserRepository() async {
   return userRepository;
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({UserRepository userRepository})
-      : _userRepository = userRepository;
+class App extends StatelessWidget {
+  const App({UserRepository userRepository}) : _userRepository = userRepository;
 
   final UserRepository _userRepository;
   @override
@@ -49,17 +48,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.orange,
         ),
-        home: MyHomePage(),
+        home: LaunchNavigator(),
       ),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return LaunchNavigator();
   }
 }

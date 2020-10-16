@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:motiv_hackathon_app/blocs/auth_screen_bloc.dart';
+import 'package:motiv_hackathon_app/blocs/launch_navigator_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/user_repository_bloc.dart';
 import 'package:motiv_hackathon_app/screens/auth_screen/auth_screen.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
@@ -12,10 +14,15 @@ class LaunchNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userRepositoryBloc = Provider.of<UserRepositoryBloc>(context);
+    final launchNavigatorBloc = Provider.of<LaunchNavigatorBloc>(context);
     final launchPage = _getPage(userRepositoryBloc);
-    switch (launchPage) {
-      case LaunchPages.Home:
-        return AuthScreen();
+    launchNavigatorBloc.initPage(launchPage);
+    switch (launchNavigatorBloc.selectedPage) {
+      case LaunchPages.Auth:
+        return ChangeNotifierProvider<AuthScreenBloc>(
+          create: (_) => AuthScreenBloc(),
+          child: AuthScreen(),
+        );
         break;
       default:
         return Scaffold();
