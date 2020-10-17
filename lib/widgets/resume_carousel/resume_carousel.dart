@@ -9,18 +9,34 @@ import 'package:motiv_hackathon_app/widgets/resume_carousel/src/app_bar.dart';
 import 'package:motiv_hackathon_app/widgets/resume_carousel/src/item.dart';
 import 'package:provider/provider.dart';
 
-class ResumeCarousel extends StatelessWidget {
+class ResumeCarousel extends StatefulWidget {
   const ResumeCarousel({
     Key key,
   }) : super(key: key);
 
+  @override
+  _ResumeCarouselState createState() => _ResumeCarouselState();
+}
+
+class _ResumeCarouselState extends State<ResumeCarousel> {
+  @override
+  void initState() {
+    if (this.mounted) {
+      setState(() {
+        _users = RequestPrepare.getResumesList();
+      });
+    }
+    super.initState();
+  }
+
+  Future<List<JobSeekerUser>> _users;
   @override
   Widget build(BuildContext context) {
     final carouselBloc = Provider.of<CarouselBloc>(context);
     return Stack(
       children: [
         FutureBuilder(
-          future: RequestPrepare.getResumesList(),
+          future: _users,
           builder: (BuildContext context,
               AsyncSnapshot<List<JobSeekerUser>> snapshot) {
             switch (snapshot.connectionState) {
@@ -32,12 +48,15 @@ class ResumeCarousel extends StatelessWidget {
                 return Center(child: CircularProgressIndicator());
               case ConnectionState.done:
                 if (!snapshot.hasError) {
+                  carouselBloc.initUsers(snapshot.data);
                   return Center(
                     child: CarouselSlider.builder(
-                      itemCount: snapshot.data.length,
+                      itemCount: carouselBloc.users.length,
                       carouselController: carouselBloc.controller,
                       itemBuilder: (context, i) {
-                        return ResumeCarouselItem(user: snapshot.data[i]);
+                        return ResumeCarouselItem(
+                          user: carouselBloc.users[i],
+                        );
                       },
                       options: CarouselOptions(
                         initialPage: 0,
@@ -46,7 +65,9 @@ class ResumeCarousel extends StatelessWidget {
                         enableInfiniteScroll: false,
                         viewportFraction: .9,
                         autoPlayCurve: Curves.elasticIn,
-                        onPageChanged: (index, reason) {},
+                        onPageChanged: (index, reason) {
+                          carouselBloc.selectedIndex = index;
+                        },
                       ),
                     ),
                   );

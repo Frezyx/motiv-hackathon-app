@@ -38,7 +38,9 @@ class CarouselActionButton extends StatelessWidget {
               ),
             ),
             onTap: () {
-              //todo: Активность в зависимости от action
+              carouselBloc.users[carouselBloc.selectedIndex].like(
+                buttonState == CarouselButtonState.Decline ? false : true,
+              );
               carouselBloc.controller.nextPage();
             },
           ),

@@ -21,9 +21,11 @@ class ResumeHeaders {
 
   Future<Response> like(JobSeekerUser user, bool state) async {
     Response response;
+    final String path =
+        _apiPath + _middleWare + _likeHandler + user.id + "/$state";
     try {
       response = await Dio().get(
-        _apiPath + _middleWare + _likeHandler + user.id + "/$state",
+        path,
       );
     } catch (e) {}
     return response;

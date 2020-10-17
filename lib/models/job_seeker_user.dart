@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:motiv_hackathon_app/data/prepare/prepare.dart';
 
 import 'interfaces/user_interface.dart';
 
@@ -22,7 +23,7 @@ class JobSeekerUser implements UserInterface {
   final int botKey;
   final bool botVerified;
   final String phone;
-  final bool interesting;
+  bool interesting;
 
   JobSeekerUser({
     this.id,
@@ -133,7 +134,7 @@ class JobSeekerUser implements UserInterface {
       botKey: map['botKey'],
       botVerified: map['botVerified'],
       phone: map['phone'],
-      interesting: map['interesting'],
+      interesting: map['interesting'] == 'true',
     );
   }
 
@@ -192,5 +193,10 @@ class JobSeekerUser implements UserInterface {
         botVerified.hashCode ^
         phone.hashCode ^
         interesting.hashCode;
+  }
+
+  Future like(state) async {
+    this.interesting =
+        await RequestPrepare.likeUser(this, state) ? state : null;
   }
 }
