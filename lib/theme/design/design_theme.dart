@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DesignTheme {
   static Color mainColor = Color(0xFFF38000);
+  static Color grey = Color(0xFFC4C4C4);
 
   static TextStyle buttonText = TextStyle(
     color: Colors.white,
