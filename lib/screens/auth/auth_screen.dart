@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motiv_hackathon_app/blocs/auth_screen_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/launch_navigator_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/user_repository_bloc.dart';
-import 'package:motiv_hackathon_app/models/user.dart';
+import 'package:motiv_hackathon_app/models/human_resource_user.dart';
 import 'package:motiv_hackathon_app/theme/design/design_theme.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
 import 'package:motiv_hackathon_app/widgets/custom/auth_tab_bar.dart';
