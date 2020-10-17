@@ -16,4 +16,9 @@ class RequestPrepare {
       resumes.add(JobSeekerUser.fromMap(resume));
     return resumes;
   }
+
+  static Future<bool> likeUser(JobSeekerUser user, bool state) async {
+    Response response = await Server.resumeHeaders.like(user, state);
+    return response.statusCode == 200;
+  }
 }

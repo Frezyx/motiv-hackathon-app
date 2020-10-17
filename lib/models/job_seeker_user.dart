@@ -123,7 +123,9 @@ class JobSeekerUser implements UserInterface {
       education: map['education'],
       workExpTime: map['workExpTime'],
       abilities: List<String>.from(map['abilities']),
-      isDriver: map['isDriver'],
+
+      /// todo: поправить этот костыль
+      isDriver: map['isDriver'] == 'true',
       languages: List<String>.from(map['languages']),
       qualifications: map['qualifications'],
       aboutPerson: map['aboutPerson'],
