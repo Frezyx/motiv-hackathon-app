@@ -24,14 +24,13 @@ class ProfileScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(18.0),
             child: ListTile(
-              
               leading:    ClipRRect(
           borderRadius: BorderRadius.circular(8), child: Image.network('https://v.img.com.ua/b/1100x999999/0/a0/62dac88c6e9068b8b8b4eb360d9a6a00.jpg'),),
               trailing: index % 2 == 0 ? Icon(FontAwesomeIcons.solidThumbsDown) : Icon(FontAwesomeIcons.solidThumbsUp,color: DesignTheme.mainColor,),
               title:Text("List item $index")
               ),
           );
-        }, separatorBuilder: (BuildContext context, int index) {  
+        }, separatorBuilder: (BuildContext context, int index) {
           return Container(
             height: 1,
             color: DesignTheme.grey,
