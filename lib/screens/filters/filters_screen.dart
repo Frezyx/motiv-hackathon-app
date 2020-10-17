@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/design/design_theme.dart';
+import '../../theme/design/design_theme.dart';
 
 class FiltersScreen extends StatelessWidget {
   const FiltersScreen({
@@ -24,22 +25,22 @@ class FiltersScreen extends StatelessWidget {
                 child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Город"),
+                                Text("Город", style: TextStyle().copyWith(color: DesignTheme.mainColor,),),
             TextFormField(
                 decoration: InputDecoration(
                   hintText: "Введите город поиска..."
                 ),
             ),
 
-              SizedBox(height: 25),
-            Text("Опыт работы"),
+              SizedBox(height: 20),
+            Text("Опыт работы", style: TextStyle().copyWith(color: DesignTheme.mainColor,),),
              Container(
               height: 1,
               color: DesignTheme.grey,
               ),
             Container(
 
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(2.0),
           child: DropdownButton(
               value: 1,
               items: [
@@ -55,14 +56,14 @@ class FiltersScreen extends StatelessWidget {
                   child: Text("3 года и более"),
                   value: 3
                 ),], onChanged: (int value) {  },),),
-   SizedBox(height: 25),
-            Text("Возраст"),
+   SizedBox(height: 20),
+            Text("Возраст",style: TextStyle().copyWith(color: DesignTheme.mainColor,),),
              Container(
               height: 1,
               color: DesignTheme.grey,
               ),
             Container(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(2.0),
           child: DropdownButton(
               value: 1,
               items: [
@@ -79,15 +80,15 @@ class FiltersScreen extends StatelessWidget {
                   value: 3
                 ),], onChanged: (int value) {  },),
             ),
-                            SizedBox(height: 25),
-            Text("Высшее образование"),
+                            SizedBox(height: 20),
+            Text("Высшее образование",style: TextStyle().copyWith(color: DesignTheme.mainColor,),),
              Container(
               height: 1,
               color: DesignTheme.grey,
               ),
             Container(
 
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(2.0),
           child: DropdownButton(
               value: 1,
               items: [
@@ -101,14 +102,15 @@ class FiltersScreen extends StatelessWidget {
                            ),
                           ], onChanged: (int value) {  },),
             ),
-            Text("Тип занятости"),
+            SizedBox(height: 20),
+            Text("Тип занятости", style: TextStyle().copyWith(color: DesignTheme.mainColor,),),
              Container(
               height: 1,
               color: DesignTheme.grey,
               ),
             Container(
 
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(2.0),
           child: DropdownButton(
               value: 1,
               items: [
@@ -130,13 +132,16 @@ class FiltersScreen extends StatelessWidget {
                 ),
               ], onChanged: (int value) {  },
           ),),
-                      Text("График работы"),
+
+          SizedBox(height: 20),
+          
+                      Text("График работы", style: TextStyle().copyWith(color: DesignTheme.mainColor,),),
              Container(
               height: 1,
               color: DesignTheme.grey,
               ),
             Container(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(2.0),
           child: DropdownButton(
               value: 1,
               items: [
@@ -188,6 +193,7 @@ class FiltersScreen extends StatelessWidget {
       ),
     );
   }
+  
 
   Container _buildAppBar(BuildContext context) {
     return Container(
@@ -199,7 +205,9 @@ class FiltersScreen extends StatelessWidget {
               ),
               child: Padding(
                 padding: EdgeInsets.all(8.0).copyWith(top: 30),
-                child: Text("Уточнить", textAlign: TextAlign.center,),
-              ),);
+                child: Text("Уточнить", textAlign: TextAlign.center, style: TextStyle().copyWith(color: Colors.white,),
+              ),));
   }
 }
+
+// DesignTheme.mainColor
