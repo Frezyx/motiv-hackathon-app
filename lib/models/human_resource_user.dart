@@ -5,26 +5,26 @@ import 'interfaces/user_interface.dart';
 class HumanResourceUser implements UserInterface {
   final int id;
   final String login;
-  final String name;
-  final String passWord;
+  final String username;
+  final String password;
   HumanResourceUser({
     this.id,
     this.login,
-    this.name,
-    this.passWord,
+    this.username,
+    this.password,
   });
 
   HumanResourceUser copyWith({
     int id,
     String login,
-    String name,
-    String passWord,
+    String username,
+    String password,
   }) {
     return HumanResourceUser(
       id: id ?? this.id,
       login: login ?? this.login,
-      name: name ?? this.name,
-      passWord: passWord ?? this.passWord,
+      username: username ?? this.username,
+      password: password ?? this.password,
     );
   }
 
@@ -32,8 +32,8 @@ class HumanResourceUser implements UserInterface {
     return {
       'id': id,
       'login': login,
-      'name': name,
-      'passWord': passWord,
+      'username': username,
+      'password': password,
     };
   }
 
@@ -43,8 +43,8 @@ class HumanResourceUser implements UserInterface {
     return HumanResourceUser(
       id: map['id'],
       login: map['login'],
-      name: map['name'],
-      passWord: map['passWord'],
+      username: map['username'],
+      password: map['password'],
     );
   }
 
@@ -55,7 +55,7 @@ class HumanResourceUser implements UserInterface {
 
   @override
   String toString() {
-    return 'HumanResourceUser(id: $id, login: $login, name: $name, passWord: $passWord)';
+    return 'HumanResourceUser(id: $id, login: $login, username: $username, password: $password)';
   }
 
   @override
@@ -65,12 +65,12 @@ class HumanResourceUser implements UserInterface {
     return o is HumanResourceUser &&
         o.id == id &&
         o.login == login &&
-        o.name == name &&
-        o.passWord == passWord;
+        o.username == username &&
+        o.password == password;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^ login.hashCode ^ name.hashCode ^ passWord.hashCode;
+    return id.hashCode ^ login.hashCode ^ username.hashCode ^ password.hashCode;
   }
 }

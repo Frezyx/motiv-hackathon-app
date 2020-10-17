@@ -5,15 +5,15 @@ import 'package:flutter/foundation.dart';
 import 'interfaces/user_interface.dart';
 
 class JobSeekerUser implements UserInterface {
-  final String id;
+  final int id;
   final String salary;
   final String employment;
   final String workSchedule;
-  final String age;
+  final int age;
   final String education;
   final String workExpTime;
   final List<String> abilities;
-  final String isDriver;
+  final bool isDriver;
   final List<String> languages;
   final String qualifications;
   final String aboutPerson;
@@ -21,6 +21,7 @@ class JobSeekerUser implements UserInterface {
   final int botKey;
   final bool botVerified;
   final String phone;
+  final bool interesting;
 
   JobSeekerUser({
     this.id,
@@ -39,6 +40,7 @@ class JobSeekerUser implements UserInterface {
     this.botKey,
     this.botVerified,
     this.phone,
+    this.interesting,
   });
 
   JobSeekerUser copyWith({
@@ -46,11 +48,11 @@ class JobSeekerUser implements UserInterface {
     String salary,
     String employment,
     String workSchedule,
-    String age,
+    int age,
     String education,
     String workExpTime,
     List<String> abilities,
-    String isDriver,
+    bool isDriver,
     List<String> languages,
     String qualifications,
     String aboutPerson,
@@ -58,6 +60,7 @@ class JobSeekerUser implements UserInterface {
     int botKey,
     bool botVerified,
     String phone,
+    bool interesting,
   }) {
     return JobSeekerUser(
       id: id ?? this.id,
@@ -76,6 +79,7 @@ class JobSeekerUser implements UserInterface {
       botKey: botKey ?? this.botKey,
       botVerified: botVerified ?? this.botVerified,
       phone: phone ?? this.phone,
+      interesting: interesting ?? this.interesting,
     );
   }
 
@@ -97,6 +101,7 @@ class JobSeekerUser implements UserInterface {
       'botKey': botKey,
       'botVerified': botVerified,
       'phone': phone,
+      'interesting': interesting,
     };
   }
 
@@ -120,6 +125,7 @@ class JobSeekerUser implements UserInterface {
       botKey: map['botKey'],
       botVerified: map['botVerified'],
       phone: map['phone'],
+      interesting: map['interesting'],
     );
   }
 
@@ -130,7 +136,7 @@ class JobSeekerUser implements UserInterface {
 
   @override
   String toString() {
-    return 'JobSeekerUser(id: $id, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone)';
+    return 'JobSeekerUser(id: $id, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone, interesting: $interesting)';
   }
 
   @override
@@ -153,7 +159,8 @@ class JobSeekerUser implements UserInterface {
         o.workDescription == workDescription &&
         o.botKey == botKey &&
         o.botVerified == botVerified &&
-        o.phone == phone;
+        o.phone == phone &&
+        o.interesting == interesting;
   }
 
   @override
@@ -173,6 +180,7 @@ class JobSeekerUser implements UserInterface {
         workDescription.hashCode ^
         botKey.hashCode ^
         botVerified.hashCode ^
-        phone.hashCode;
+        phone.hashCode ^
+        interesting.hashCode;
   }
 }

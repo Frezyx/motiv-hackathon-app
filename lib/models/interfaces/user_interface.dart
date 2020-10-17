@@ -1,1 +1,6 @@
-abstract class UserInterface {}
+abstract class UserInterface {
+  final int id;
+  UserInterface({
+    this.id,
+  });
+}
