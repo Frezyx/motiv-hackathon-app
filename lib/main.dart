@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:motiv_hackathon_app/widgets/launch_navigator.dart';
 import 'package:provider/provider.dart';
 
+import 'blocs/carousel_bloc.dart';
 import 'blocs/launch_navigator_bloc.dart';
 import 'blocs/user_repository_bloc.dart';
 import 'data/repositories/user/mock/repository.dart';
@@ -10,6 +11,7 @@ import 'data/repositories/user/user_repository.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'models/interfaces/user_interface.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,9 +40,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (ctx) => LaunchNavigatorBloc(),
-        ),
+        ChangeNotifierProvider(create: (ctx) => LaunchNavigatorBloc()),
+        ChangeNotifierProvider(create: (ctx) => CarouselBloc()),
         ChangeNotifierProvider(
             create: (ctx) => UserRepositoryBloc(repository: _userRepository)),
         Provider<UserInterface>(create: (ctx) => null)
@@ -49,6 +50,9 @@ class App extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          textTheme: GoogleFonts.comfortaaTextTheme(
+            Theme.of(context).textTheme,
+          ),
           primarySwatch: Colors.orange,
         ),
         home: LaunchNavigator(),

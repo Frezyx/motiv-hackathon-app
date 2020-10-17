@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:motiv_hackathon_app/blocs/carousel_bloc.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
 import 'package:motiv_hackathon_app/widgets/custom/carousel_action_button.dart';
 import 'package:motiv_hackathon_app/widgets/resume_carousel/src/app_bar.dart';
 import 'package:motiv_hackathon_app/widgets/resume_carousel/src/item.dart';
+import 'package:provider/provider.dart';
 
 class ResumeCarousel extends StatelessWidget {
   const ResumeCarousel({
@@ -12,11 +14,13 @@ class ResumeCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carouselBloc = Provider.of<CarouselBloc>(context);
     return Stack(
       children: [
         Center(
           child: CarouselSlider.builder(
             itemCount: 10,
+            carouselController: carouselBloc.controller,
             itemBuilder: (context, i) {
               return ResumeCarouselItem();
             },

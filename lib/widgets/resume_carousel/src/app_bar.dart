@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:motiv_hackathon_app/screens/filters/filters_screen.dart';
+import 'package:motiv_hackathon_app/screens/profile/profile_screen.dart';
 import 'package:motiv_hackathon_app/theme/design/design_theme.dart';
 
 class CarouselAppBar extends StatelessWidget {
   const CarouselAppBar({
     Key key,
   }) : super(key: key);
+
+  _openHomeScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProfileScreen()),
+    );
+  }
+
+  _openFiltersScreen(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FiltersScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +32,7 @@ class CarouselAppBar extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: InkWell(
-              onTap: () => print("profile"),
+              onTap: () => _openHomeScreen(context),
               child: Container(
                 padding: EdgeInsets.all(4),
                 child: Icon(
@@ -28,14 +44,14 @@ class CarouselAppBar extends StatelessWidget {
             ),
           ),
         ),
-        Text("Водитель"),
+        Text("Водитель", style: DesignTheme.appBarText),
         SizedBox(
           width: MediaQuery.of(context).size.width * .2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               InkWell(
-                onTap: () => print("profile"),
+                onTap: () => print("change view state"),
                 child: Container(
                   padding: EdgeInsets.all(4),
                   child: Icon(
@@ -46,7 +62,7 @@ class CarouselAppBar extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () => print("profile"),
+                onTap: () => _openFiltersScreen(context),
                 child: Container(
                   padding: EdgeInsets.all(4),
                   child: Icon(

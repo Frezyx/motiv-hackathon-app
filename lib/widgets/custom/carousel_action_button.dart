@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:motiv_hackathon_app/blocs/carousel_bloc.dart';
 import 'package:motiv_hackathon_app/theme/design/design_theme.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
+import 'package:provider/provider.dart';
 
 class CarouselActionButton extends StatelessWidget {
   const CarouselActionButton({
@@ -12,6 +14,7 @@ class CarouselActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final carouselBloc = Provider.of<CarouselBloc>(context);
     return Container(
       decoration: BoxDecoration(boxShadow: [DesignTheme.resumeButtonsShadow]),
       child: ClipOval(
@@ -30,11 +33,14 @@ class CarouselActionButton extends StatelessWidget {
                     ? Icons.close
                     : Icons.favorite_outline_rounded,
                 color: buttonState == CarouselButtonState.Decline
-                    ? Colors.red[900]
-                    : Colors.green[900],
+                    ? Colors.red[800]
+                    : Colors.green[800],
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              //todo: Активность в зависимости от action
+              carouselBloc.controller.nextPage();
+            },
           ),
         ),
       ),

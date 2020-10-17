@@ -20,6 +20,12 @@ class DesignTheme {
     fontWeight: FontWeight.w400,
   );
 
+  static TextStyle appBarText = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
   static const BoxShadow resumeButtonsShadow = BoxShadow(
     color: Color.fromRGBO(0, 0, 0, 0.03),
     blurRadius: 15.0,

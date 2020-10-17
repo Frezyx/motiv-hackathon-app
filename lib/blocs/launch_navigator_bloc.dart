@@ -9,6 +9,7 @@ class LaunchNavigatorBloc extends ChangeNotifier {
 
   set selectedPage(LaunchPages val) {
     _selectedPage = val;
+    print(_selectedPage);
     notifyListeners();
   }
 }
