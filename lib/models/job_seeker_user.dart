@@ -1,14 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:motiv_hackathon_app/data/prepare/prepare.dart';
 
 import 'interfaces/user_interface.dart';
 
 class JobSeekerUser implements UserInterface {
-  final int id;
+  final String id;
+  final String name;
   final String salary;
-  final String employment;
-  final String workSchedule;
+  final List<String> employment;
+  final List<String> workSchedule;
   final int age;
   final String education;
   final String workExpTime;
@@ -21,10 +23,11 @@ class JobSeekerUser implements UserInterface {
   final int botKey;
   final bool botVerified;
   final String phone;
-  final bool interesting;
+  bool interesting;
 
   JobSeekerUser({
     this.id,
+    this.name,
     this.salary,
     this.employment,
     this.workSchedule,
@@ -45,9 +48,10 @@ class JobSeekerUser implements UserInterface {
 
   JobSeekerUser copyWith({
     String id,
+    String name,
     String salary,
-    String employment,
-    String workSchedule,
+    List<String> employment,
+    List<String> workSchedule,
     int age,
     String education,
     String workExpTime,
@@ -64,6 +68,7 @@ class JobSeekerUser implements UserInterface {
   }) {
     return JobSeekerUser(
       id: id ?? this.id,
+      name: name ?? this.name,
       salary: salary ?? this.salary,
       employment: employment ?? this.employment,
       workSchedule: workSchedule ?? this.workSchedule,
@@ -86,6 +91,7 @@ class JobSeekerUser implements UserInterface {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'name': name,
       'salary': salary,
       'employment': employment,
       'workSchedule': workSchedule,
@@ -110,14 +116,17 @@ class JobSeekerUser implements UserInterface {
 
     return JobSeekerUser(
       id: map['id'],
+      name: map['name'],
       salary: map['salary'],
-      employment: map['employment'],
-      workSchedule: map['workSchedule'],
+      employment: List<String>.from(map['employment']),
+      workSchedule: List<String>.from(map['workSchedule']),
       age: map['age'],
       education: map['education'],
       workExpTime: map['workExpTime'],
       abilities: List<String>.from(map['abilities']),
-      isDriver: map['isDriver'],
+
+      /// todo: поправить этот костыль
+      isDriver: map['isDriver'] == 'true',
       languages: List<String>.from(map['languages']),
       qualifications: map['qualifications'],
       aboutPerson: map['aboutPerson'],
@@ -125,7 +134,7 @@ class JobSeekerUser implements UserInterface {
       botKey: map['botKey'],
       botVerified: map['botVerified'],
       phone: map['phone'],
-      interesting: map['interesting'],
+      interesting: map['interesting'] == 'true',
     );
   }
 
@@ -136,7 +145,7 @@ class JobSeekerUser implements UserInterface {
 
   @override
   String toString() {
-    return 'JobSeekerUser(id: $id, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone, interesting: $interesting)';
+    return 'JobSeekerUser(id: $id, name: $name, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone, interesting: $interesting)';
   }
 
   @override
@@ -145,9 +154,10 @@ class JobSeekerUser implements UserInterface {
 
     return o is JobSeekerUser &&
         o.id == id &&
+        o.name == name &&
         o.salary == salary &&
-        o.employment == employment &&
-        o.workSchedule == workSchedule &&
+        listEquals(o.employment, employment) &&
+        listEquals(o.workSchedule, workSchedule) &&
         o.age == age &&
         o.education == education &&
         o.workExpTime == workExpTime &&
@@ -166,6 +176,7 @@ class JobSeekerUser implements UserInterface {
   @override
   int get hashCode {
     return id.hashCode ^
+        name.hashCode ^
         salary.hashCode ^
         employment.hashCode ^
         workSchedule.hashCode ^
@@ -182,5 +193,10 @@ class JobSeekerUser implements UserInterface {
         botVerified.hashCode ^
         phone.hashCode ^
         interesting.hashCode;
+  }
+
+  Future like(state) async {
+    this.interesting =
+        await RequestPrepare.likeUser(this, state) ? state : null;
   }
 }

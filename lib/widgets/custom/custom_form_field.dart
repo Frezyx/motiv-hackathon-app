@@ -4,13 +4,16 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     Key key,
     @required this.hintText,
+    @required this.controller,
   }) : super(key: key);
 
   final String hintText;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
         border: OutlineInputBorder(
@@ -21,6 +24,9 @@ class CustomTextFormField extends StatelessWidget {
           ),
         ),
       ),
+      validator: (value) {
+        if (value.isEmpty) return 'Заполните поле';
+      },
     );
   }
 }

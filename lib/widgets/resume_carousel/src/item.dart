@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:motiv_hackathon_app/models/job_seeker_user.dart';
 import 'package:motiv_hackathon_app/theme/design/design_theme.dart';
 
 import 'opened_item_field.dart';
@@ -7,7 +8,10 @@ import 'opened_item_field.dart';
 class ResumeCarouselItem extends StatelessWidget {
   const ResumeCarouselItem({
     Key key,
+    @required this.user,
   }) : super(key: key);
+
+  final JobSeekerUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +48,22 @@ class ResumeCarouselItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "Вин Дизель, 49 лет",
+                  "${user.name}, ${user.age}г.",
                   style: DesignTheme.carouselTitleWhite,
                 ),
                 SizedBox(height: 5),
                 ItemOpenedField(
-                  text: "70000р",
+                  text: "${user.salary}р",
                   icon: FontAwesomeIcons.rubleSign,
                 ),
                 SizedBox(height: 5),
                 ItemOpenedField(
-                  text: "Уральский Федеральный Университет",
+                  text: "${user.education}",
                   icon: FontAwesomeIcons.university,
                 ),
+                SizedBox(height: 5),
+                Text("${user.interesting}",
+                    style: TextStyle().copyWith(color: Colors.white)),
               ],
             ),
           ),

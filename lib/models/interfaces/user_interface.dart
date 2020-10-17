@@ -1,5 +1,5 @@
 abstract class UserInterface {
-  final int id;
+  final String id;
   UserInterface({
     this.id,
   });

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:motiv_hackathon_app/blocs/auth_screen_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/launch_navigator_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/user_repository_bloc.dart';
+import 'package:motiv_hackathon_app/data/api/real/server.dart';
+import 'package:motiv_hackathon_app/data/prepare/prepare.dart';
 import 'package:motiv_hackathon_app/models/human_resource_user.dart';
 import 'package:motiv_hackathon_app/theme/design/design_theme.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
@@ -15,6 +17,8 @@ class AuthScreen extends StatelessWidget {
   }) : super(key: key);
 
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _loginController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +43,8 @@ class AuthScreen extends StatelessWidget {
                   height: 45,
                   width: isLogin ? 150 : 190,
                   child: RaisedButton(
-                    onPressed: () {
-                      userRepositoryBloc.repository.create(HumanResourceUser());
-                      launchNavigatorBloc.selectedPage = LaunchPages.Home;
+                    onPressed: () async {
+                      await _login(userRepositoryBloc, launchNavigatorBloc);
                     },
                     color: DesignTheme.mainColor,
                     shape: RoundedRectangleBorder(
@@ -64,10 +67,30 @@ class AuthScreen extends StatelessWidget {
     );
   }
 
+  Future _login(
+    UserRepositoryBloc userRepositoryBloc,
+    LaunchNavigatorBloc launchNavigatorBloc,
+  ) async {
+    if (_formKey.currentState.validate()) {
+      final user = HumanResourceUser(
+        username: _loginController.text,
+        password: _passwordController.text,
+      );
+      final status = await RequestPrepare.loginUser(user);
+      if (status) {
+        userRepositoryBloc.repository.create(user);
+        launchNavigatorBloc.selectedPage = LaunchPages.Home;
+      }
+    }
+  }
+
   Widget _buildForm(AuthScreenBloc authScreenBloc) {
     switch (authScreenBloc.selectedPage) {
       case AuthPages.Login:
-        return _LoginForm();
+        return _LoginForm(
+          passwordController: _passwordController,
+          loginController: _loginController,
+        );
         break;
       default:
         return _RegForm();
@@ -86,29 +109,43 @@ class _RegForm extends StatelessWidget {
     return Column(
       children: [
         AuthTabBar(),
-        CustomTextFormField(hintText: "Логин"),
+        CustomTextFormField(
+          hintText: "Логин",
+          controller: null,
+        ),
         SizedBox(height: 10),
-        CustomTextFormField(hintText: "Имя"),
+        CustomTextFormField(
+          hintText: "Имя",
+          controller: null,
+        ),
         SizedBox(height: 10),
-        CustomTextFormField(hintText: "Пароль"),
+        CustomTextFormField(
+          hintText: "Пароль",
+          controller: null,
+        ),
       ],
     );
   }
 }
 
 class _LoginForm extends StatelessWidget {
-  const _LoginForm({
+  _LoginForm({
     Key key,
+    @required this.loginController,
+    @required this.passwordController,
   }) : super(key: key);
+
+  final TextEditingController loginController;
+  final TextEditingController passwordController;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         AuthTabBar(),
-        CustomTextFormField(hintText: "Логин"),
+        CustomTextFormField(hintText: "Логин", controller: loginController),
         SizedBox(height: 10),
-        CustomTextFormField(hintText: "Пароль"),
+        CustomTextFormField(hintText: "Пароль", controller: passwordController),
       ],
     );
   }
