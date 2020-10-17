@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'interfaces/user_interface.dart';
 
 class HumanResourceUser implements UserInterface {
-  final int id;
+  final String id;
   final String login;
   final String username;
   final String password;
@@ -15,7 +15,7 @@ class HumanResourceUser implements UserInterface {
   });
 
   HumanResourceUser copyWith({
-    int id,
+    String id,
     String login,
     String username,
     String password,

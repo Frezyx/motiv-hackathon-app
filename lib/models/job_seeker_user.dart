@@ -5,10 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'interfaces/user_interface.dart';
 
 class JobSeekerUser implements UserInterface {
-  final int id;
+  final String id;
   final String salary;
-  final String employment;
-  final String workSchedule;
+  final List<String> employment;
+  final List<String> workSchedule;
   final int age;
   final String education;
   final String workExpTime;
@@ -46,8 +46,8 @@ class JobSeekerUser implements UserInterface {
   JobSeekerUser copyWith({
     String id,
     String salary,
-    String employment,
-    String workSchedule,
+    List<String> employment,
+    List<String> workSchedule,
     int age,
     String education,
     String workExpTime,
@@ -111,13 +111,13 @@ class JobSeekerUser implements UserInterface {
     return JobSeekerUser(
       id: map['id'],
       salary: map['salary'],
-      employment: map['employment'],
-      workSchedule: map['workSchedule'],
+      employment: List<String>.from(map['employment']),
+      workSchedule: List<String>.from(map['workSchedule']),
       age: map['age'],
       education: map['education'],
       workExpTime: map['workExpTime'],
       abilities: List<String>.from(map['abilities']),
-      isDriver: map['isDriver'],
+      isDriver: map['isDriver'] == "true",
       languages: List<String>.from(map['languages']),
       qualifications: map['qualifications'],
       aboutPerson: map['aboutPerson'],
@@ -146,8 +146,8 @@ class JobSeekerUser implements UserInterface {
     return o is JobSeekerUser &&
         o.id == id &&
         o.salary == salary &&
-        o.employment == employment &&
-        o.workSchedule == workSchedule &&
+        listEquals(o.employment, employment) &&
+        listEquals(o.workSchedule, workSchedule) &&
         o.age == age &&
         o.education == education &&
         o.workExpTime == workExpTime &&
