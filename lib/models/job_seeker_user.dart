@@ -6,6 +6,7 @@ import 'interfaces/user_interface.dart';
 
 class JobSeekerUser implements UserInterface {
   final String id;
+  final String name;
   final String salary;
   final List<String> employment;
   final List<String> workSchedule;
@@ -25,6 +26,7 @@ class JobSeekerUser implements UserInterface {
 
   JobSeekerUser({
     this.id,
+    this.name,
     this.salary,
     this.employment,
     this.workSchedule,
@@ -45,6 +47,7 @@ class JobSeekerUser implements UserInterface {
 
   JobSeekerUser copyWith({
     String id,
+    String name,
     String salary,
     List<String> employment,
     List<String> workSchedule,
@@ -64,6 +67,7 @@ class JobSeekerUser implements UserInterface {
   }) {
     return JobSeekerUser(
       id: id ?? this.id,
+      name: name ?? this.name,
       salary: salary ?? this.salary,
       employment: employment ?? this.employment,
       workSchedule: workSchedule ?? this.workSchedule,
@@ -86,6 +90,7 @@ class JobSeekerUser implements UserInterface {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'name': name,
       'salary': salary,
       'employment': employment,
       'workSchedule': workSchedule,
@@ -110,6 +115,7 @@ class JobSeekerUser implements UserInterface {
 
     return JobSeekerUser(
       id: map['id'],
+      name: map['name'],
       salary: map['salary'],
       employment: List<String>.from(map['employment']),
       workSchedule: List<String>.from(map['workSchedule']),
@@ -117,7 +123,7 @@ class JobSeekerUser implements UserInterface {
       education: map['education'],
       workExpTime: map['workExpTime'],
       abilities: List<String>.from(map['abilities']),
-      isDriver: map['isDriver'] == "true",
+      isDriver: map['isDriver'],
       languages: List<String>.from(map['languages']),
       qualifications: map['qualifications'],
       aboutPerson: map['aboutPerson'],
@@ -136,7 +142,7 @@ class JobSeekerUser implements UserInterface {
 
   @override
   String toString() {
-    return 'JobSeekerUser(id: $id, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone, interesting: $interesting)';
+    return 'JobSeekerUser(id: $id, name: $name, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone, interesting: $interesting)';
   }
 
   @override
@@ -145,6 +151,7 @@ class JobSeekerUser implements UserInterface {
 
     return o is JobSeekerUser &&
         o.id == id &&
+        o.name == name &&
         o.salary == salary &&
         listEquals(o.employment, employment) &&
         listEquals(o.workSchedule, workSchedule) &&
@@ -166,6 +173,7 @@ class JobSeekerUser implements UserInterface {
   @override
   int get hashCode {
     return id.hashCode ^
+        name.hashCode ^
         salary.hashCode ^
         employment.hashCode ^
         workSchedule.hashCode ^
