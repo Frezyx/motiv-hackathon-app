@@ -21,6 +21,12 @@ class DesignTheme {
     fontWeight: FontWeight.w400,
   );
 
+  static TextStyle carouselFieldBlack = TextStyle(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle appBarText = TextStyle(
     color: Colors.black,
     fontSize: 16,
