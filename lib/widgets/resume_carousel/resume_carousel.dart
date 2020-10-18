@@ -114,8 +114,9 @@ class _ResumeCarouselState extends State<ResumeCarousel> {
                     vertical: 5.0,
                   ),
                   child: ItemClosedField(
-                    text:
-                        "${user.workExpTime.split(',')[0]} лет ${user.workExpTime.split(',').length > 1 ? user.workExpTime.split(',')[1] + ' мес.' : ''}",
+                    text: user.workExpTime != null
+                        ? "${user.workExpTime.split(',')[0]} лет ${user.workExpTime.split(',').length > 1 ? user.workExpTime.split(',')[1] + ' мес.' : ''}"
+                        : "",
                     icon: Icons.timer,
                   ),
                 ),

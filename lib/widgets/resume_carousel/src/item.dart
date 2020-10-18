@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:motiv_hackathon_app/blocs/carousel_bloc.dart';
+import 'package:motiv_hackathon_app/data/api/real/config.dart';
 import 'package:motiv_hackathon_app/models/job_seeker_user.dart';
 import 'package:motiv_hackathon_app/theme/design/design_theme.dart';
 
@@ -34,9 +35,7 @@ class ResumeCarouselItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
           fit: BoxFit.cover,
-          image: NetworkImage(
-            "https://avatars.mds.yandex.net/get-zen_doc/229614/pub_5b13bde555bd23121d720d31_5b13be9a7ddde8d404eae64e/scale_1200",
-          ),
+          image: NetworkImage(ServerConfig.serverPath + user.image),
           alignment: Alignment.topCenter,
         ),
       ),
@@ -53,9 +52,7 @@ class ResumeCarouselItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                  "https://avatars.mds.yandex.net/get-zen_doc/229614/pub_5b13bde555bd23121d720d31_5b13be9a7ddde8d404eae64e/scale_1200",
-                ),
+                image: NetworkImage(ServerConfig.serverPath + user.image),
                 alignment: Alignment.topCenter,
               ),
             ),

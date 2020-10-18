@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:motiv_hackathon_app/blocs/launch_navigator_bloc.dart';
 import 'package:motiv_hackathon_app/blocs/user_repository_bloc.dart';
+import 'package:motiv_hackathon_app/data/api/real/config.dart';
 import 'package:motiv_hackathon_app/data/prepare/prepare.dart';
 import 'package:motiv_hackathon_app/models/job_seeker_user.dart';
 import 'package:motiv_hackathon_app/utils/enums.dart';
@@ -43,7 +44,8 @@ class ProfileScreen extends StatelessWidget {
                           leading: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(
-                                'https://v.img.com.ua/b/1100x999999/0/a0/62dac88c6e9068b8b8b4eb360d9a6a00.jpg'),
+                              ServerConfig.serverPath + user.image,
+                            ),
                           ),
                           trailing: !user.interesting
                               ? Icon(FontAwesomeIcons.solidThumbsDown)
