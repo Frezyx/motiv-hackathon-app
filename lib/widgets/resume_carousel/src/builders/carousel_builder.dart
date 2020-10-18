@@ -25,7 +25,7 @@ class CarouselBuilder extends StatelessWidget {
         );
       },
       options: CarouselOptions(
-        initialPage: 0,
+        initialPage: carouselBloc.selectedIndex,
         height: carouselBloc.isOpened
             ? MediaQuery.of(context).size.height * .4
             : MediaQuery.of(context).size.height * .6,

@@ -21,4 +21,12 @@ class RequestPrepare {
     Response response = await Server.resumeHeaders.like(user, state);
     return response.statusCode == 200;
   }
+
+  static Future<List<JobSeekerUser>> getHistory() async {
+    Response response = await Server.historyHeaders.getHistory();
+    List<JobSeekerUser> resumes = [];
+    for (var resume in response.data)
+      resumes.add(JobSeekerUser.fromMap(resume));
+    return resumes;
+  }
 }
