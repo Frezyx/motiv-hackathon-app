@@ -25,6 +25,7 @@ class JobSeekerUser implements UserInterface {
   final bool botVerified;
   final String phone;
   bool interesting;
+  String image;
 
   JobSeekerUser({
     this.id,
@@ -45,6 +46,7 @@ class JobSeekerUser implements UserInterface {
     this.botVerified,
     this.phone,
     this.interesting,
+    this.image,
   });
 
   JobSeekerUser copyWith({
@@ -66,6 +68,7 @@ class JobSeekerUser implements UserInterface {
     bool botVerified,
     String phone,
     bool interesting,
+    String image,
   }) {
     return JobSeekerUser(
       id: id ?? this.id,
@@ -86,6 +89,7 @@ class JobSeekerUser implements UserInterface {
       botVerified: botVerified ?? this.botVerified,
       phone: phone ?? this.phone,
       interesting: interesting ?? this.interesting,
+      image: image ?? this.image,
     );
   }
 
@@ -109,6 +113,7 @@ class JobSeekerUser implements UserInterface {
       'botVerified': botVerified,
       'phone': phone,
       'interesting': interesting,
+      'image': image,
     };
   }
 
@@ -117,7 +122,7 @@ class JobSeekerUser implements UserInterface {
 
     return JobSeekerUser(
       id: map['id'],
-      name: map['name'].toString(),
+      name: map['name'],
       salary: map['salary'],
       employment: List<String>.from(map['employment']),
       workSchedule: List<String>.from(map['workSchedule']),
@@ -134,6 +139,7 @@ class JobSeekerUser implements UserInterface {
       botVerified: map['botVerified'],
       phone: map['phone'],
       interesting: map['interesting'],
+      image: map['image'],
     );
   }
 
@@ -144,7 +150,7 @@ class JobSeekerUser implements UserInterface {
 
   @override
   String toString() {
-    return 'JobSeekerUser(id: $id, name: $name, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone, interesting: $interesting)';
+    return 'JobSeekerUser(id: $id, name: $name, salary: $salary, employment: $employment, workSchedule: $workSchedule, age: $age, education: $education, workExpTime: $workExpTime, abilities: $abilities, isDriver: $isDriver, languages: $languages, qualifications: $qualifications, aboutPerson: $aboutPerson, workDescription: $workDescription, botKey: $botKey, botVerified: $botVerified, phone: $phone, interesting: $interesting, image: $image)';
   }
 
   @override
@@ -169,7 +175,8 @@ class JobSeekerUser implements UserInterface {
         o.botKey == botKey &&
         o.botVerified == botVerified &&
         o.phone == phone &&
-        o.interesting == interesting;
+        o.interesting == interesting &&
+        o.image == image;
   }
 
   @override
@@ -191,7 +198,8 @@ class JobSeekerUser implements UserInterface {
         botKey.hashCode ^
         botVerified.hashCode ^
         phone.hashCode ^
-        interesting.hashCode;
+        interesting.hashCode ^
+        image.hashCode;
   }
 
   Future like(state) async {

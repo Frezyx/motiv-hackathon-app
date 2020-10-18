@@ -55,76 +55,138 @@ class _ResumeCarouselState extends State<ResumeCarousel> {
           ).copyWith(bottom: 0),
           child: CarouselAppBar(),
         ),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 10),
-              CarouselBuilder(
-                carouselBloc: carouselBloc,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 5.0,
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                CarouselBuilder(
+                  carouselBloc: carouselBloc,
                 ),
-                child: Text(
-                  "${user.name}, ${user.age}г.",
-                  style: DesignTheme.carouselTitleWhite
-                      .copyWith(fontSize: 20, color: Colors.black),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 5.0,
-                ),
-                child: ItemClosedField(
-                  text: "${user.education}",
-                  icon: FontAwesomeIcons.university,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 5.0,
-                ),
-                child: ItemClosedField(
-                  text: "${user.abilities}",
-                  icon: FontAwesomeIcons.university,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 5.0,
-                ),
-                child: ItemClosedField(
-                  text: "${user.abilities}",
-                  icon: FontAwesomeIcons.university,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 5.0,
-                ),
-                child: ItemClosedField(
-                  text: "+${user.phone}",
-                  icon: FontAwesomeIcons.phone,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CarouselActionButton(
-                    buttonState: CarouselButtonState.Decline,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 10.0,
+                  ).copyWith(left: 45.0),
+                  child: Text(
+                    "${user.name}, ${user.age}г.",
+                    style: DesignTheme.carouselTitleWhite
+                        .copyWith(fontSize: 20, color: Colors.black),
                   ),
-                  CarouselActionButton(
-                    buttonState: CarouselButtonState.Accept,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
                   ),
-                ],
-              )
-            ],
+                  child: ItemClosedField(
+                    text: "${user.education}",
+                    icon: FontAwesomeIcons.university,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: "${user.abilities}"
+                        .replaceAll(']', '')
+                        .replaceAll('[', ''),
+                    icon: FontAwesomeIcons.palette,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: "${user.workSchedule}"
+                        .replaceAll(']', '')
+                        .replaceAll('[', ''),
+                    icon: Icons.timer,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: user.workExpTime != null
+                        ? "${user.workExpTime.split(',')[0]} лет ${user.workExpTime.split(',').length > 1 ? user.workExpTime.split(',')[1] + ' мес.' : ''}"
+                        : "",
+                    icon: Icons.timer,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: "${user.languages}"
+                        .replaceAll(']', '')
+                        .replaceAll('[', ''),
+                    icon: FontAwesomeIcons.language,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: "${user.salary}р",
+                    icon: FontAwesomeIcons.rubleSign,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: "${user.workDescription}",
+                    icon: FontAwesomeIcons.info,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: "${user.aboutPerson}",
+                    icon: FontAwesomeIcons.info,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                    vertical: 5.0,
+                  ),
+                  child: ItemClosedField(
+                    text: "+${user.phone}",
+                    icon: FontAwesomeIcons.phone,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CarouselActionButton(
+                      buttonState: CarouselButtonState.Decline,
+                    ),
+                    CarouselActionButton(
+                      buttonState: CarouselButtonState.Accept,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30),
+              ],
+            ),
           ),
         ),
       ],

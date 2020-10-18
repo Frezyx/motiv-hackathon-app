@@ -13,25 +13,27 @@ class ItemClosedField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(
-          icon,
-          color: Colors.black,
-          size: 14,
-        ),
-        SizedBox(width: 4),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.75,
-          child: AutoSizeText(
-            text,
-            style: DesignTheme.carouselFieldBlack,
-            maxLines: null,
-            minFontSize: 12,
-            overflow: TextOverflow.fade,
-          ),
-        ),
-      ],
-    );
+    return text == null || text == "null" || text == "" || text == "nullр"
+        ? Container()
+        : Row(
+            children: [
+              Icon(
+                icon,
+                color: DesignTheme.mainColor,
+                size: 16,
+              ),
+              SizedBox(width: 15),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: AutoSizeText(
+                  text,
+                  style: DesignTheme.carouselFieldBlack,
+                  maxLines: null,
+                  minFontSize: 12,
+                  overflow: TextOverflow.fade,
+                ),
+              ),
+            ],
+          );
   }
 }

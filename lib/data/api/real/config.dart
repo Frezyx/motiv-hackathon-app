@@ -14,5 +14,5 @@ class ServerConfig {
   }
 
   static String path = _getProtocol() + _getServerAddress() + _getApiPath();
-  static String serverPath = _getProtocol() + _getServerAddress();
+  static String serverPath = 'http://185.117.152.68/';
 }
