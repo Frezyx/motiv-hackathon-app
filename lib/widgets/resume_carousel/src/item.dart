@@ -28,6 +28,7 @@ class ResumeCarouselItem extends StatelessWidget {
 
   Widget _buildOpenedContainer(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
       width: MediaQuery.of(context).size.width,
       decoration: new BoxDecoration(
         borderRadius: BorderRadius.circular(20),

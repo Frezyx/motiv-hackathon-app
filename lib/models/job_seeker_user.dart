@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+
 import 'package:motiv_hackathon_app/data/prepare/prepare.dart';
 
 import 'interfaces/user_interface.dart';
@@ -8,7 +9,7 @@ import 'interfaces/user_interface.dart';
 class JobSeekerUser implements UserInterface {
   final String id;
   final String name;
-  final String salary;
+  final int salary;
   final List<String> employment;
   final List<String> workSchedule;
   final int age;
@@ -49,7 +50,7 @@ class JobSeekerUser implements UserInterface {
   JobSeekerUser copyWith({
     String id,
     String name,
-    String salary,
+    int salary,
     List<String> employment,
     List<String> workSchedule,
     int age,
@@ -116,7 +117,7 @@ class JobSeekerUser implements UserInterface {
 
     return JobSeekerUser(
       id: map['id'],
-      name: map['name'],
+      name: map['name'].toString(),
       salary: map['salary'],
       employment: List<String>.from(map['employment']),
       workSchedule: List<String>.from(map['workSchedule']),
@@ -124,9 +125,7 @@ class JobSeekerUser implements UserInterface {
       education: map['education'],
       workExpTime: map['workExpTime'],
       abilities: List<String>.from(map['abilities']),
-
-      /// todo: поправить этот костыль
-      isDriver: map['isDriver'] == 'true',
+      isDriver: map['isDriver'],
       languages: List<String>.from(map['languages']),
       qualifications: map['qualifications'],
       aboutPerson: map['aboutPerson'],
@@ -134,7 +133,7 @@ class JobSeekerUser implements UserInterface {
       botKey: map['botKey'],
       botVerified: map['botVerified'],
       phone: map['phone'],
-      interesting: map['interesting'] == 'true',
+      interesting: map['interesting'],
     );
   }
 
